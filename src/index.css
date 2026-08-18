@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-emerald: #0F2A1E;
+  --color-emerald-dark: #0A1D15;
+  --color-gold: #C6952C;
+  --color-gold-light: #DDB65C;
+  --color-gold-dark: #9C7420;
+  --color-garnet: #6E1F2A;
+  --color-garnet-dark: #521623;
+  --color-ivory: #F6EFDF;
+  --color-espresso: #1C1712;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 24s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+/* Append this to the bottom of your existing src/index.css — do not replace the file. */
+
+@keyframes float-sparkle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(var(--drift-x, 12px), var(--drift-y, -24px)) scale(1.15);
+    opacity: 0.55;
+  }
+}
+
+.animate-float-sparkle {
+  animation: float-sparkle var(--duration, 10s) ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-sparkle {
+    animation: none;
+  }
+}
