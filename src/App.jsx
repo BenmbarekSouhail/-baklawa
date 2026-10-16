@@ -33,6 +33,7 @@ import {
 
 const EMAILJS_SERVICE_ID = 'service_j1rq289';
 const EMAILJS_ORDER_TEMPLATE_ID = 'template_yick3rl';
+const EMAILJS_CONTACT_TEMPLATE_ID = 'template_2xgbd64';
 const EMAILJS_PUBLIC_KEY = 'lTT8VihLefQdL2pHD';
 
 const byCategory = (cat) => products.filter((p) => p.category === cat);
@@ -98,7 +99,7 @@ function HomePage({ pendingScroll, clearPendingScroll }) {
           <div className="relative">
             <div className="aspect-[4/5] rounded-[2rem] overflow-hidden bg-[#0F2A1E] relative">
               <img
-                src={assortmentHero}
+                src={pistachioTexture}
                 alt="Assorted baklawa platter from Baklawa Factory"
                 className="w-full h-full object-cover"
               />
@@ -203,7 +204,11 @@ function HomePage({ pendingScroll, clearPendingScroll }) {
         id="assorted"
         eyebrow={CATEGORY_META.assorted.subtitle}
         title={CATEGORY_META.assorted.title}
-        products={byCategory('assorted')}
+        groups={[
+          { key: 'pistachio', label: 'Pistachio', products: byCategory('assorted').filter((p) => p.subcategory === 'pistachio') },
+          { key: 'walnut', label: 'Walnut', products: byCategory('assorted').filter((p) => p.subcategory === 'walnut') },
+          { key: 'hazelnut', label: 'Hazelnut', products: byCategory('assorted').filter((p) => p.subcategory === 'hazelnut') },
+        ]}
       />
 
       {/* Mixed Baklawa */}
@@ -348,16 +353,32 @@ function AppShell() {
     return () => clearTimeout(timer);
   }, [paymentBanner]);
 
-  const handleNewsletterSubmit = (e) => {
+  const [newsletterSending, setNewsletterSending] = useState(false);
+  const [newsletterError, setNewsletterError] = useState(false);
+
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
-    // No backend yet — opens your email app with a ready-to-send lead notice.
-    // Swap for Mailchimp/Klaviyo/Formspree later for silent, real subscriptions.
-    const subject = encodeURIComponent('New newsletter signup — Baklawa Factory');
-    const body = encodeURIComponent(
-      `A visitor subscribed for seasonal drop alerts.\n\nTheir email: ${newsletterEmail}`
-    );
-    window.location.href = `mailto:benmbareksohail@gmail.com?subject=${subject}&body=${body}`;
-    setNewsletterSent(true);
+    setNewsletterSending(true);
+    setNewsletterError(false);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_CONTACT_TEMPLATE_ID,
+        {
+          from_name: 'Newsletter signup',
+          from_email: newsletterEmail,
+          message: 'A visitor subscribed for seasonal drop alerts (Eid, Ramadan, holiday gifting).',
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      setNewsletterSent(true);
+      setNewsletterEmail('');
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setNewsletterError(true);
+    } finally {
+      setNewsletterSending(false);
+    }
   };
 
   const handleNavigate = (target) => {
@@ -424,13 +445,21 @@ function AppShell() {
               placeholder="name@email.com"
               className="flex-1 max-w-xs px-5 py-3 rounded-full text-[#1C1712] text-sm focus:outline-none focus:ring-2 focus:ring-[#C6952C]"
             />
-            <button className="bg-[#C6952C] text-[#0F2A1E] font-semibold text-sm px-7 py-3 rounded-full hover:bg-[#DDB65C] transition-colors cursor-pointer">
-              Subscribe
+            <button
+              disabled={newsletterSending}
+              className="bg-[#C6952C] text-[#0F2A1E] font-semibold text-sm px-7 py-3 rounded-full hover:bg-[#DDB65C] transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {newsletterSending ? 'Subscribing…' : 'Subscribe'}
             </button>
           </form>
           {newsletterSent && (
             <p className="text-sm text-[#F6EFDF]/80 mt-4">
-              Almost done — check the email app that just opened and hit send to confirm.
+              You're on the list — we'll email you before the next drop.
+            </p>
+          )}
+          {newsletterError && (
+            <p className="text-sm text-[#C6952C] mt-4">
+              Something went wrong — please try again in a moment.
             </p>
           )}
         </div>
@@ -501,7 +530,7 @@ function AppShell() {
           <p>© 2026 Baklawa Factory — All rights reserved.</p>
           <div className="flex items-center gap-3">
             <span className="px-3 py-1 border border-[#F6EFDF]/20 rounded">Visa</span>
-            <span className="px-3 py-1 border border-[#F6EFDF]/20 rounded">Mastercard</span>
+            <span className="px-3 py-1 border border-[#F6EFDF]/20 rounded">Apple Pay</span>
             <span className="px-3 py-1 border border-[#F6EFDF]/20 rounded">Cash on delivery</span>
           </div>
         </div>

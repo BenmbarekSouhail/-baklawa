@@ -289,7 +289,7 @@ export default function Checkout() {
                         checked={paymentMethod === 'card'}
                         onChange={() => setPaymentMethod('card')}
                       />
-                      Visa / Mastercard
+                      Visa / Apple Pay
                     </label>
 
                     {paymentMethod === 'cod' && (

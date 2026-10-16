@@ -1,39 +1,43 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-/**
- * Wrap any section in this to make it fade + rise into view as the user
- * scrolls to it, instead of just snapping into place.
- *
- * Usage: <FadeInSection><section>...</section></FadeInSection>
- */
-export default function FadeInSection({ children, className = '' }) {
+// Fades content in as soon as ANY part of it enters the screen.
+// (threshold 0 matters: very tall sections never reach a 10-20% threshold.)
+export default function FadeInSection({ children, className = '', delay = 0, ...rest }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
+    const el = ref.current;
+    if (!el) return;
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || typeof IntersectionObserver === 'undefined') {
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.unobserve(node); // only animate in once
+          observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -80px 0px' }
+      { threshold: 0, rootMargin: '0px 0px -40px 0px' }
     );
-
-    observer.observe(node);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      } ${className}`}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        // 'none' once visible, so no leftover transform traps pop-ups
+        transform: visible ? 'none' : 'translateY(24px)',
+        transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
+      }}
+      {...rest}
     >
       {children}
     </div>
