@@ -7,6 +7,7 @@ import logo from './assets/baklawa.png';
 const NAV_LINKS = [
   { label: 'Assorted', target: 'assorted' },
   { label: 'Mixed Boxes', target: 'mixed' },
+  { label: 'Kunafa', target: 'kunafa' },
   { label: 'Cakes & Ice Cream', target: 'cakes' },
   { label: 'Turkish Delight', target: 'turkish-delight' },
   { label: 'Tea & Coffee', target: 'tea' },

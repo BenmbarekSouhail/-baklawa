@@ -43,11 +43,15 @@ export default function CategorySection({ id, eyebrow, title, products, groups, 
             ))}
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))}
-          </div>
+          products.length === 0 ? (
+            <p className="text-sm text-[#1C1712]/50 italic">Coming soon.</p>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {products.map((item) => (
+                <ProductCard key={item.id} item={item} />
+              ))}
+            </div>
+          )
         )}
       </FadeInSection>
     </section>

@@ -40,7 +40,7 @@ const byCategory = (cat) => products.filter((p) => p.category === cat);
 const featured = products.filter((p) => p.featured);
 
 // Nav targets that scroll to their own section id directly
-const DIRECT_ANCHORS = ['assorted', 'mixed', 'cakes', 'turkish-delight', 'tea', 'gifting', 'bestsellers'];
+const DIRECT_ANCHORS = ['assorted', 'mixed', 'kunafa', 'cakes', 'turkish-delight', 'tea', 'gifting', 'bestsellers'];
 
 function HomePage({ pendingScroll, clearPendingScroll }) {
   useEffect(() => {
@@ -220,12 +220,21 @@ function HomePage({ pendingScroll, clearPendingScroll }) {
         tint
       />
 
+      {/* Kunafa */}
+      <CategorySection
+        id="kunafa"
+        eyebrow={CATEGORY_META.kunafa.subtitle}
+        title={CATEGORY_META.kunafa.title}
+        products={byCategory('kunafa')}
+      />
+
       {/* Delights, Cake & Ice Cream */}
       <CategorySection
         id="cakes"
         eyebrow={CATEGORY_META.cakes.subtitle}
         title={CATEGORY_META.cakes.title}
         products={byCategory('cakes')}
+        tint
       />
 
       {/* Turkish Delight */}
@@ -234,7 +243,6 @@ function HomePage({ pendingScroll, clearPendingScroll }) {
         eyebrow={CATEGORY_META['turkish-delight'].subtitle}
         title={CATEGORY_META['turkish-delight'].title}
         products={byCategory('turkish-delight')}
-        tint
       />
 
       {/* Tea & Coffee */}
@@ -243,6 +251,7 @@ function HomePage({ pendingScroll, clearPendingScroll }) {
         eyebrow={CATEGORY_META.tea.subtitle}
         title={CATEGORY_META.tea.title}
         products={byCategory('tea')}
+        tint
       />
 
       {/* Gifting */}
@@ -479,13 +488,13 @@ function AppShell() {
           <div>
             <p className="text-[#F6EFDF] text-sm font-semibold mb-4">Shop</p>
             <ul className="space-y-2 text-sm">
-              {['assorted', 'mixed', 'cakes', 'tea'].map((target, i) => (
+              {['assorted', 'mixed', 'kunafa', 'cakes', 'tea'].map((target, i) => (
                 <li key={target}>
                   <button
                     onClick={() => handleNavigate(target)}
                     className="hover:text-[#C6952C] transition-colors cursor-pointer"
                   >
-                    {['Assorted Baklawa', 'Mixed Boxes', 'Cakes & Ice Cream', 'Tea & Coffee'][i]}
+                    {['Assorted Baklawa', 'Mixed Boxes', 'Kunafa', 'Cakes & Ice Cream', 'Tea & Coffee'][i]}
                   </button>
                 </li>
               ))}
