@@ -226,6 +226,7 @@ function HomePage({ pendingScroll, clearPendingScroll }) {
         eyebrow={CATEGORY_META.kunafa.subtitle}
         title={CATEGORY_META.kunafa.title}
         products={byCategory('kunafa')}
+        cardType="assorted"
       />
 
       {/* Delights, Cake & Ice Cream */}
@@ -234,6 +235,7 @@ function HomePage({ pendingScroll, clearPendingScroll }) {
         eyebrow={CATEGORY_META.cakes.subtitle}
         title={CATEGORY_META.cakes.title}
         products={byCategory('cakes')}
+        cardType="assorted"
         tint
       />
 

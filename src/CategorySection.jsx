@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import AssortedProductCard from './AssortedProductCard';
 import FadeInSection from './FadeInSection';
 
-export default function CategorySection({ id, eyebrow, title, products, groups, tint = false }) {
+export default function CategorySection({ id, eyebrow, title, products, groups, cardType, tint = false }) {
   return (
     <section
       id={id}
@@ -45,6 +45,12 @@ export default function CategorySection({ id, eyebrow, title, products, groups, 
         ) : (
           products.length === 0 ? (
             <p className="text-sm text-[#1C1712]/50 italic">Coming soon.</p>
+          ) : cardType === 'assorted' ? (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map((item) => (
+                <AssortedProductCard key={item.id} item={item} />
+              ))}
+            </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {products.map((item) => (

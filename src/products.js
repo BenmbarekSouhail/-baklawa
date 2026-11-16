@@ -18,6 +18,13 @@ import mint from './assets/eight-mix.png';
 import rose from './assets/nine-mix.png';
 import iceCreamBowl from './assets/ice-cream-bowl.jpg';
 import iceCream1kg from './assets/ice-cream-1kg.jpg';
+import kunafaPistachioA from './assets/kunafa-pistachio-a.jpg';
+import kunafaPistachioB from './assets/kunafa-pistachio-b.jpg';
+import kunafaSpecialPistachioA from './assets/kunafa-special-pistachio-a.jpg';
+import kunafaCheeseA from './assets/kunafa-cheese-a.jpg';
+import kunafaCheeseB from './assets/kunafa-cheese-b.jpg';
+import kunafaCheeseC from './assets/kunafa-cheese-c.jpg';
+import sanSebastianA from './assets/san-sebastian-a.jpg';
 
 // Assorted Baklawa — Pistachio
 import pistachioType1A from './assets/pistachio-type1-a.jpg';
@@ -180,10 +187,16 @@ export const products = [
   { id: 'mixed-pistachio-choco-mix', title: 'Pistachio and Choco Mix', price: '310.00 – 520.00 د.إ', image: IMG.a, category: 'mixed', consumption: 'To be consumed within 7 days after delivery and kept at room temperature. Best served warmed-up in the oven for a few seconds.', ingredients: 'Flour, Eggs, Cream, Starch, Sugar, Pistachio, Chocolate, Pure Ghee', sizeInfo: '1 KG Box — 22-24 Pieces' },
   { id: 'mixed-pistachio-green-wrap', title: 'Pistachio Green Wrap', price: 'Price on request', image: fiveMix, category: 'mixed', ingredients: 'Flour, Eggs, Starch, Sugar, Pistachio, Pure Ghee Oil, and cream', sizeInfo: '2 KG Tray — 32 Pieces' },
 
+  // ================= KUNAFA =================
+  { id: 'kunafa-pistachio', title: 'Pistachio Kunafa', category: 'kunafa', images: [kunafaPistachioA, kunafaPistachioB], sizes: [{ label: 'Per piece', price: 'AED 35' }, { label: '1 KG', price: 'AED 200' }], ingredients: 'Kunafa Hair, Pistachio, Syrup' },
+  { id: 'kunafa-special-pistachio', title: 'Special Pistachio Kunafa', category: 'kunafa', images: [kunafaSpecialPistachioA], sizes: [{ label: 'Per piece', price: 'AED 35' }, { label: '1 KG', price: 'AED 300' }], ingredients: 'Kunafa Hair, Pistachio, Syrup' },
+  { id: 'kunafa-cheese', title: 'Cheese Kunafa', category: 'kunafa', images: [kunafaCheeseA, kunafaCheeseB, kunafaCheeseC], sizes: [{ label: 'Per piece', price: 'AED 35' }], ingredients: 'Kunafa Hair, Akawi Cheese, Syrup' },
+
   // ================= CAKES & ICE CREAM =================
 
-  { id: 'cakes-bowl-ice-cream', title: 'Bowl Ice Cream', price: '20.00 د.إ', image: iceCreamBowl, category: 'cakes', sizeInfo: 'Bowl' },
-  { id: 'cakes-ice-cream-1kg', title: 'Ice Cream', price: '90.00 د.إ', image: iceCream1kg, category: 'cakes', sizeInfo: '1 KG' },
+  { id: 'cakes-bowl-ice-cream', title: 'Bowl Ice Cream', category: 'cakes', images: [iceCreamBowl], sizes: [{ label: 'Bowl', price: 'AED 20' }] },
+  { id: 'cakes-ice-cream-1kg', title: 'Ice Cream', category: 'cakes', images: [iceCream1kg], sizes: [{ label: '1 KG', price: 'AED 90' }] },
+  { id: 'cakes-san-sebastian', title: 'San Sebastian', category: 'cakes', images: [sanSebastianA], sizes: [{ label: 'Piece', price: 'AED 15' }] },
 
   // ================= TEA & COFFEE =================
   { id: 'tea-dogadan-green', title: 'Dogadan Green Tea', price: '50.00 د.إ', image: IMG.b, category: 'tea' },

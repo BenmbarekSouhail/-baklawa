@@ -12,8 +12,6 @@ export default function Checkout() {
   const [placed, setPlaced] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showCoupon, setShowCoupon] = useState(false);
   const [createAccount, setCreateAccount] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('cod');
 
@@ -116,59 +114,6 @@ export default function Checkout() {
         {!placed ? (
           <>
             <h2 className="font-serif text-3xl text-[#0F2A1E] mb-6">Checkout</h2>
-
-            {/* Returning customer / coupon */}
-            <div className="space-y-2 mb-8">
-              <div className="bg-[#F6EFDF] rounded-xl px-4 py-3 text-sm">
-                Returning customer?{' '}
-                <button
-                  type="button"
-                  onClick={() => setShowLogin((v) => !v)}
-                  className="text-[#6E1F2A] font-semibold hover:underline cursor-pointer"
-                >
-                  Click here to login
-                </button>
-                {showLogin && (
-                  <div className="mt-3 grid sm:grid-cols-2 gap-3">
-                    <input
-                      type="text"
-                      placeholder="Username or email"
-                      className="px-4 py-2.5 rounded-lg border border-black/10 text-sm outline-none focus:border-[#C6952C]"
-                    />
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      className="px-4 py-2.5 rounded-lg border border-black/10 text-sm outline-none focus:border-[#C6952C]"
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="bg-[#F6EFDF] rounded-xl px-4 py-3 text-sm">
-                Have a coupon?{' '}
-                <button
-                  type="button"
-                  onClick={() => setShowCoupon((v) => !v)}
-                  className="text-[#6E1F2A] font-semibold hover:underline cursor-pointer"
-                >
-                  Click here to enter your code
-                </button>
-                {showCoupon && (
-                  <div className="mt-3 flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="Coupon code"
-                      className="flex-1 px-4 py-2.5 rounded-lg border border-black/10 text-sm outline-none focus:border-[#C6952C]"
-                    />
-                    <button
-                      type="button"
-                      className="px-4 py-2.5 rounded-lg bg-[#0F2A1E] text-[#F6EFDF] text-sm font-semibold cursor-pointer"
-                    >
-                      Apply
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
 
             <form onSubmit={handleSubmit} className="grid lg:grid-cols-5 gap-10">
               {/* Billing & shipping */}
