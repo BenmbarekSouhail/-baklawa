@@ -81,6 +81,11 @@ export default function Checkout() {
       );
       setPlaced(true);
       clearCart();
+        fetch('/api/notify-whatsapp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ customerName: customer.name, total: cartTotal.toFixed(2) }),
+      }).catch((err) => console.error('WhatsApp notify failed:', err));
     } catch (err) {
       console.error('EmailJS error:', err);
       setError(true);
