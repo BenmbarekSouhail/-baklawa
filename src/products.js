@@ -18,13 +18,6 @@ import mint from './assets/eight-mix.png';
 import rose from './assets/nine-mix.png';
 import iceCreamBowl from './assets/ice-cream-bowl.jpg';
 import iceCream1kg from './assets/ice-cream-1kg.jpg';
-import kunafaPistachioA from './assets/kunafa-pistachio-a.jpg';
-import kunafaPistachioB from './assets/kunafa-pistachio-b.jpg';
-import kunafaSpecialPistachioA from './assets/kunafa-special-pistachio-a.jpg';
-import kunafaCheeseA from './assets/kunafa-cheese-a.jpg';
-import kunafaCheeseB from './assets/kunafa-cheese-b.jpg';
-import kunafaCheeseC from './assets/kunafa-cheese-c.jpg';
-import sanSebastianA from './assets/san-sebastian-a.jpg';
 
 // Assorted Baklawa — Pistachio
 import pistachioType1A from './assets/pistachio-type1-a.jpg';
@@ -187,27 +180,14 @@ export const products = [
   { id: 'mixed-pistachio-choco-mix', title: 'Pistachio and Choco Mix', price: '310.00 – 520.00 د.إ', image: IMG.a, category: 'mixed', consumption: 'To be consumed within 7 days after delivery and kept at room temperature. Best served warmed-up in the oven for a few seconds.', ingredients: 'Flour, Eggs, Cream, Starch, Sugar, Pistachio, Chocolate, Pure Ghee', sizeInfo: '1 KG Box — 22-24 Pieces' },
   { id: 'mixed-pistachio-green-wrap', title: 'Pistachio Green Wrap', price: 'Price on request', image: fiveMix, category: 'mixed', ingredients: 'Flour, Eggs, Starch, Sugar, Pistachio, Pure Ghee Oil, and cream', sizeInfo: '2 KG Tray — 32 Pieces' },
 
-  // ================= KUNAFA =================
-  { id: 'kunafa-pistachio', title: 'Pistachio Kunafa', category: 'kunafa', images: [kunafaPistachioA, kunafaPistachioB], sizes: [{ label: 'Per piece', price: 'AED 35' }, { label: '1 KG', price: 'AED 200' }], ingredients: 'Kunafa Hair, Pistachio, Syrup' },
-  { id: 'kunafa-special-pistachio', title: 'Special Pistachio Kunafa', category: 'kunafa', images: [kunafaSpecialPistachioA], sizes: [{ label: 'Per piece', price: 'AED 35' }, { label: '1 KG', price: 'AED 300' }], ingredients: 'Kunafa Hair, Pistachio, Syrup' },
-  { id: 'kunafa-cheese', title: 'Cheese Kunafa', category: 'kunafa', images: [kunafaCheeseA, kunafaCheeseB, kunafaCheeseC], sizes: [{ label: 'Per piece', price: 'AED 35' }], ingredients: 'Kunafa Hair, Akawi Cheese, Syrup' },
-
   // ================= CAKES & ICE CREAM =================
 
-  { id: 'cakes-bowl-ice-cream', title: 'Bowl Ice Cream', category: 'cakes', images: [iceCreamBowl], sizes: [{ label: 'Bowl', price: 'AED 20' }] },
-  { id: 'cakes-ice-cream-1kg', title: 'Ice Cream', category: 'cakes', images: [iceCream1kg], sizes: [{ label: '1 KG', price: 'AED 90' }] },
-  { id: 'cakes-san-sebastian', title: 'San Sebastian', category: 'cakes', images: [sanSebastianA], sizes: [{ label: 'Piece', price: 'AED 15' }] },
+  { id: 'cakes-bowl-ice-cream', title: 'Bowl Ice Cream', price: '20.00 د.إ', image: iceCreamBowl, category: 'cakes', sizeInfo: 'Bowl' },
+  { id: 'cakes-ice-cream-1kg', title: 'Ice Cream', price: '90.00 د.إ', image: iceCream1kg, category: 'cakes', sizeInfo: '1 KG' },
 
   // ================= TEA & COFFEE =================
-  { id: 'tea-dogadan-green', title: 'Dogadan Green Tea', price: '50.00 د.إ', image: IMG.b, category: 'tea' },
-  { id: 'tea-dogadan-black', title: 'Dogadan Black Tea', price: '50.00 د.إ', image: IMG.b, category: 'tea' },
-  { id: 'tea-selamlique-dark-roast', title: 'Selamlique Dark Roast', price: '40.00 د.إ', image: IMG.d, category: 'tea' },
-  { id: 'tea-selamlique-cinnamon', title: 'Selamlique Cinnamon Coffee', price: '40.00 د.إ', image: IMG.d, category: 'tea' },
-  { id: 'tea-selamlique-cardamom', title: 'Selamlique Cardamom Coffee', price: '40.00 د.إ', image: IMG.d, category: 'tea' },
-  { id: 'tea-selamlique-traditional', title: 'Selamlique Coffee Traditional', price: '40.00 د.إ', image: IMG.d, category: 'tea' },
 
   // ================= SPECIAL GIFTING =================
-  { id: 'gifting-pistachio-carrot-cut-plate', title: 'Pistachio Carrot Cut Plate', price: '520.00 د.إ', image: IMG.e, category: 'gifting', consumption: 'To be consumed within 7 days after delivery and kept at room temperature. Best served warmed-up in the oven for a few seconds.', ingredients: 'Flour, Eggs, Cream, Starch, Sugar, Pistachio, Pure Ghee', sizeInfo: '2 KG Plate (refundable 60 AED plate deposit) — 16 Pieces' },
 
   // ================= TURKISH DELIGHT =================
   { id: 'turkish-delight-d030-traditional-plain', title: 'Traditional Plain', price: 'Price on request', image: traditionalPlain, category: 'turkish-delight', sizeInfo: '5 KG Box' },

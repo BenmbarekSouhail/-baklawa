@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { X } from 'lucide-react';
+import { X, Lock } from 'lucide-react';
 import { useCart } from './CartContext';
 
 const EMAILJS_SERVICE_ID = 'service_j1rq289';
@@ -79,13 +79,17 @@ export default function Checkout() {
         },
         { publicKey: EMAILJS_PUBLIC_KEY }
       );
-      setPlaced(true);
-      clearCart();
-        fetch('/api/notify-whatsapp', {
+
+      // WhatsApp ping to the owner. Fire-and-forget: if it fails, the order
+      // still goes through (the email above is the main notification).
+      fetch('/api/notify-whatsapp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ customerName: customer.name, total: cartTotal.toFixed(2) }),
       }).catch((err) => console.error('WhatsApp notify failed:', err));
+
+      setPlaced(true);
+      clearCart();
     } catch (err) {
       console.error('EmailJS error:', err);
       setError(true);
@@ -232,15 +236,13 @@ export default function Checkout() {
                       />
                       Cash on delivery
                     </label>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="radio"
-                        name="payment"
-                        checked={paymentMethod === 'card'}
-                        onChange={() => setPaymentMethod('card')}
-                      />
-                      Visa / Apple Pay
-                    </label>
+                    {/* Card payment is locked for now — "Coming soon" */}
+                    <div className="flex items-center gap-2 cursor-not-allowed" aria-disabled="true">
+                      <input type="radio" name="payment" disabled checked={false} readOnly />
+                      <Lock className="w-3.5 h-3.5 text-[#1C1712]/40" />
+                      <span className="text-[#1C1712]/40">Visa / Apple Pay</span>
+                      <span className="text-xs font-semibold text-red-600">Coming soon</span>
+                    </div>
 
                     {paymentMethod === 'cod' && (
                       <div className="pt-2 space-y-3">
